@@ -1,0 +1,153 @@
+.nav {
+    --bs-breadcrumb-divider: '>';
+}
+
+
+a.nav-link:link {text-decoration : none ;color : #7e7e7e; padding: 0px;}
+a.nav-link:visited {text-decoration : none ;color : #7e7e7e; padding: 0px;}
+a.nav-link:hover {text-decoration : none ;color : #7e7e7e; padding: 0px;}
+a.nav-link:active {text-decoration : none ;color : #7e7e7e; padding: 0px;}
+
+.breadcrumb-item-end {
+    color: #000000;
+}
+
+.container {
+    margin-top: 30px;
+}
+
+.product-image {
+    width: 100%;
+    height: auto;
+}
+
+.product-price {
+    margin-top: 30px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000000;
+    margin-bottom: 30px;
+}
+
+.add-button {
+    margin-top: 20px;
+    background-color: #000000 !important;
+    color: white !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+}
+
+.cart-button {
+    margin-top: 20px;
+    background-color: #ffffff !important;
+    color: rgb(0, 0, 0) !important;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 200px;
+    height: 50px;
+    border: 1px solid #000000;
+    box-shadow: #333333 0px 0px 1px;
+    margin-left: 30px;
+}
+
+.product-panel {
+    background-color: #f8f9fa;
+    width: 230px;
+    padding: 15px;
+    border-radius: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+.icon-size {
+    font-size: 25px;
+    color: #7e7e7e;
+}
+
+.product-panel-text {
+    margin-left: 20px;
+    font-size: 16px;
+    color: #b6b6b6;
+}
+
+.product-text-value {
+    font-size: 16px;
+    color: #616060;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-container2 {
+    display: flex;
+    align-items: center;
+}
+
+.service-panel {
+    width: 175px;
+    padding: 15px 15px 15px 0px;
+    margin-right: 20px;
+    margin-bottom: 30px;
+}
+
+.service-icon {
+    background-color: #e7e7e7;
+    width: 60px;
+    font-size: 25px;
+    padding: 10px;
+    color: #7e7e7e;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.service-text {
+    margin-left: 10px;
+    font-size: 14px;
+    color: #b6b6b6;
+}
+
+.service-text-value {
+    font-size: 14px;
+    color: #333333;
+}
+
+.product-details {
+    margin-top: 30px;
+    font-size: 16px;
+    padding-top: 20px;
+}
+
+.review {
+    margin-top: 30px;
+    font-size: 16px;
+    padding: 20px;
+    background-color: #e0e0e0;
+    border-radius: 15px;
+}
+
+.review-text {
+    font-size: 16px;
+    color: #7c7c7c;
+}
+
+.gray {
+    color: #7e7e7e;
+}
+
+.author {
+    margin-right: 100px;
+}
+
+.review-date {
+    margin-left: 100px;
+}
