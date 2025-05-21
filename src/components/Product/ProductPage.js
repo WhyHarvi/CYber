@@ -1,10 +1,11 @@
 import './ProductPage.css';
 import { useParams } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { saveReview, getReviews, addCart } from '../../Services/LocalStorage';
 import { useNavigate } from 'react-router-dom';
 import StarRating from '../StarRating/StarRating';
 import Stars from '../Stars/Stars';
+import { ToastContainer, Zoom, toast } from 'react-toastify';
 
 
 function ProductPage({ products }) {
@@ -17,7 +18,22 @@ function ProductPage({ products }) {
     const textareaRef = useRef();
     const navigate = useNavigate();
 
+    const notify = (msg) => toast.success(msg, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+        transition: Zoom,
+    });
 
+    // Scroll to top on page load
+    useEffect(() => {
+    window.scrollTo(0, 0);
+    }, []);
 
 
     function submit() {
@@ -34,13 +50,23 @@ function ProductPage({ products }) {
             textareaRef.current.value = '';
             setReviews(getReviews(product.id));
         } else {
-            alert('Please enter a review');
+            toast.warn('Please input review!', {
+                position: "top-right",
+                autoClose: 3000,
+                hideProgressBar: true,
+                closeOnClick: false,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: "light",
+                transition: Zoom,
+            });
         }
     }
 
     function addToCart() {
         addCart(product);
-        alert('Product added to cart');
+        notify('The product has been added to the cart.');
     }
 
     function goToCart() {
@@ -52,10 +78,12 @@ function ProductPage({ products }) {
         <div className="container">
             <nav className='nav' aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a className='nav-link' href="#">Home</a></li>
+                    <li className="breadcrumb-item"><a className='nav-link' href="/">Home</a></li>
                     <li className="breadcrumb-item breadcrumb-item-end active" aria-current="page">Product</li>
                 </ol>
             </nav>
+
+            <ToastContainer />
 
             <div className="row">
                 <div className='col-5'>

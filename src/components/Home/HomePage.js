@@ -1,6 +1,7 @@
 import React from 'react';
 import './HomePage.css';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -10,6 +11,7 @@ import { useState } from 'react';
 function HomePage({products}) {
     // Add these before return
     const [selectedCategory, setSelectedCategory] = useState('All Products');
+    const navigate = useNavigate();
 
     const categories = ['All Products', 'New Arrivals', 'Best Sellers', 'Featured products'];
 
@@ -20,6 +22,10 @@ function HomePage({products}) {
         selectedCategory === 'All Products'
             ? products
             : products.filter((product) => product.category === selectedCategory);
+
+    function buy(id) {
+        navigate(`/products/${id}`);
+    }
 
             
     return (
@@ -143,7 +149,7 @@ function HomePage({products}) {
                             <img src={product.image} alt={product.name} />
                             <p>{product.name}</p>
                             <h4>${product.price}</h4>
-                            <button className="buy-btn">Buy Now</button>
+                            <button className="buy-btn" onClick={() => buy(product.id)}>Buy Now</button>
                         </div>
                     ))}
                 </div>
