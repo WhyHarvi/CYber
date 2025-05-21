@@ -1,0 +1,61 @@
+.login-page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #f0f0f0;
+    gap: 200px;
+}
+
+.login-page> div{
+    width: 450px;
+    height: auto;
+    text-align: center;
+    align-content: center;
+}
+
+.login-container{
+    border-radius: 40px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+}
+
+.login-container input[type="email"],[type="password"]{
+    width: 80%;
+    height: 60px;
+    padding-inline: 30px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    background-color: #ccc;
+    font-size: larger;
+
+}
+
+
+.register-link{
+    text-decoration: none;
+    color: #000;
+    font-size: 20px;
+    padding: 20px;
+}
+
+.register-link  a{
+    color: #6d4aff;
+}
+
+
+.login-image-img{
+    width: 600px;
+    height:  700px;
+    object-fit: cover;
+    object-position: 15% 100%;
+    border-radius: 25px;
+}
+
+.login-image{
+    clip-path: polygon(38% 0, 81% 0, 84% 100%, 15% 100%);
+    border-radius: 25px;
+
+}
+

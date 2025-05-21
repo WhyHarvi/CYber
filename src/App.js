@@ -4,11 +4,14 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Auth/Login';
-import Register from './components/Auth/Register';
+import Register from './components/Auth/RegisterStep1';
 import HomePage from './components/Home/HomePage';
 import ProductPage from './components/Product/ProductPage';
 import CartPage from './components/Cart/CartPage';
-
+import RegisterNext from './components/Auth/Register';
+import EditProfile from './components/Auth/EditProfile';
+import OrderDetailsPage from './components/Cart/OrderDetailsPage';
+import ReceiptPage from './components/Cart/ReceiptPage';
 
 function App() {
   const products = [
@@ -136,7 +139,10 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/products/:id" element={<ProductPage products={products} />} />
         <Route path="/cart" element={<CartPage />} />
-       
+        <Route path="/registerNext" element={<RegisterNext />} />
+        <Route path="/edit-profile" element={<EditProfile />} />
+        <Route path="/order-details" element={<OrderDetailsPage />} />
+        <Route path="/receipt" element={<ReceiptPage />} />
       </Routes>
       <Footer />
     </Router>

@@ -5,32 +5,42 @@ import { Link } from 'react-router-dom';
 function Navbar({ products }) {
   const [searchTerm, setSearchTerm] = useState('');
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+  const username = localStorage.getItem('username') || sessionStorage.getItem('username');
+  const loginTime = localStorage.getItem('loginTime') || sessionStorage.getItem('loginTime');
+
+  if (loginTime && Date.now() - loginTime > 3600000) {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
+    localStorage.removeItem('loginTime');
+    window.location.href = '/'; // Redirect to login if token expired
+  }
 
   const filtered = (products || []).filter((p) =>
     p.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
- const handleSelect = (value) => {
-  setSearchTerm(value);
-  setShowSuggestions(false);
+  const handleSelect = (value) => {
+    setSearchTerm(value);
+    setShowSuggestions(false);
 
-  // Scroll to product section
-  const target = document.getElementById('products');
-  if (target) {
-    target.scrollIntoView({ behavior: 'smooth' });
-  }
+    // Scroll to product section
+    const target = document.getElementById('products');
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
 
-  // Highlight matched product card (by text)
-  setTimeout(() => {
-    const cards = document.querySelectorAll('.products-item');
-    cards.forEach((card) => {
-      if (card.innerText.toLowerCase().includes(value.toLowerCase())) {
-        card.classList.add('highlight');
-        setTimeout(() => card.classList.remove('highlight'), 4000);
-      }
-    });
-  }, 500); // small delay to allow scroll/render
-};
+    // Highlight matched product card (by text)
+    setTimeout(() => {
+      const cards = document.querySelectorAll('.products-item');
+      cards.forEach((card) => {
+        if (card.innerText.toLowerCase().includes(value.toLowerCase())) {
+          card.classList.add('highlight');
+          setTimeout(() => card.classList.remove('highlight'), 4000);
+        }
+      });
+    }, 500); // small delay to allow scroll/render
+  };
 
 
   const handleSearchClick = () => {
@@ -38,6 +48,13 @@ function Navbar({ products }) {
       handleSelect(filtered[0].name);
     }
   };
+
+  const handleLogout = () => {
+    localStorage.clear();
+    sessionStorage.clear();
+    window.location.href = '/'; // or use useNavigate
+  };
+
 
   return (
     <nav className="navbar">
@@ -105,9 +122,20 @@ function Navbar({ products }) {
           </button>
         </Link>
 
-        <Link to="/login">
-          <button className="login-btn">Login</button>
-        </Link>
+        {token ? (
+          <>
+            <span className="hello-user">Hello, {username}</span>
+            <Link to="/edit-profile">
+              <button className="logged-btn">Edit Profile</button>
+            </Link>
+            <button className="logged-btn" onClick={handleLogout}>Logout</button>
+          </>
+        ) : (
+          <Link to="/login">
+            <button className="login-btn">Login</button>
+          </Link>
+        )}
+
       </div>
     </nav>
   );

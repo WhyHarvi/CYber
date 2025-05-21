@@ -1,12 +1,14 @@
 import './CartPage.css';
 import { useParams } from 'react-router-dom';
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { getCart, saveCart } from '../../Services/LocalStorage';
 import { useNavigate } from 'react-router-dom';
 
 function CartPage() {
 
     const [cartItems, setCartItems] = useState(getCart());
+    const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+    const navigate = useNavigate();
 
     function addQuantity(product) {
         const updatedCart = cartItems.map(item => {
@@ -14,7 +16,7 @@ function CartPage() {
                 return { ...item, quantity: item.quantity + 1 };
             }
             return item;
-        }); 
+        });
         setCartItems(updatedCart);
         saveCart(updatedCart);
     }
@@ -40,6 +42,8 @@ function CartPage() {
         saveCart(updatedCart);
     }
 
+    const [showPopup, setShowPopup] = useState(false);
+
     return (
         <div>
             <div className="banner mb-5">
@@ -60,15 +64,15 @@ function CartPage() {
                                         <p className="cart-item-price">${item.price}</p>
                                         <p className="cart-item-quantity mb-5">Quantity: {item.quantity}</p>
 
-                                        <button className='addQuantity' onClick={ () => addQuantity(item)}>+</button>
-                                        <button className='addQuantity' onClick={ () => removeQuantity(item)}>-</button>
-                                        <button className='remove-button' onClick={ () => removeItem(item)}><i class="bi bi-trash"></i></button>
+                                        <button className='addQuantity' onClick={() => addQuantity(item)}>+</button>
+                                        <button className='addQuantity' onClick={() => removeQuantity(item)}>-</button>
+                                        <button className='remove-button' onClick={() => removeItem(item)}><i class="bi bi-trash"></i></button>
 
                                     </div>
 
                                     <hr />
                                 </div>
-                                
+
                             ))
                         ) : (
                             <p>Your cart is empty.</p>
@@ -117,10 +121,38 @@ function CartPage() {
                         </div>
 
                         <div className="mt-5 gray">
-                            You will be charged at the time of shipment. If this is a personalized or made-to-order purchase, you will be charged at the time of order. 
+                            You will be charged at the time of shipment. If this is a personalized or made-to-order purchase, you will be charged at the time of order.
                         </div>
 
-                        <button className="btn checkout-button mt-4">CHECKOUT</button>
+                        <button
+                            className="btn checkout-button mt-4"
+                            onClick={() => {
+                                const token = localStorage.getItem('token') || sessionStorage.getItem('token');
+                                if (token) {
+                                    navigate('/receipt');
+                                } else {
+                                    setShowPopup(true);
+                                }
+                            }}
+                        >
+                            CHECKOUT
+                        </button>
+
+                        {showPopup && (
+                            <div className="popup-backdrop">
+                                <div className="popup-box">
+                                    <h3>You're not logged in</h3>
+                                    <p>Would you like to Login or order anonymously?</p>
+                                    <div className="popup-buttons">
+                                        <button onClick={() => navigate('/login')}>Login</button>
+                                        <button onClick={() => navigate('/order-details')}>Order Anonymously</button>
+                                        <button className="popup-cancel" onClick={() => setShowPopup(false)}>Cancel</button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+
                     </div>
                 </div>
 
