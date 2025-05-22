@@ -31,6 +31,7 @@ function RegisterStep1() {
   };
 
   return (
+    <div className="register-page1">
     <form onSubmit={handleNext} className="register-form">
       <h2>Register</h2>
       <p>Enter valid details below to register as new user</p>
@@ -45,11 +46,22 @@ function RegisterStep1() {
         <option value="">Select Province</option>
         <option value="ON">Ontario</option>
         <option value="BC">British Columbia</option>
-        {/* more options */}
+        <option value="QC">Quebec</option>
+        <option value="AB">Alberta</option>
+        <option value="MB">Manitoba</option>
+        <option value="SK">Saskatchewan</option>
+        <option value="NS">Nova Scotia</option>
+        <option value="NB">New Brunswick</option>
+        <option value="PE">Prince Edward Island</option>
+        <option value="NL">Newfoundland and Labrador</option>
       </select>
       <button type="submit">Next →</button>
       <p>Already a member? <a href="/login">Login</a></p>
     </form>
+      <div className="register-image">
+        <img src="\assets\register.png" alt="Register" />
+      </div>
+  </div>
   );
 }
 

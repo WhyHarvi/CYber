@@ -3,13 +3,14 @@
     justify-content: center;
     align-items: center;
     height: 80vh;
-    background-color: #f0f0f0;
+    background-color: #b8b8b8;
+    background-image: url("/public/assets/background.png");
     gap: 200px;
 }
 
 .login-page> div{
     width: 450px;
-    height: auto;
+    height: 550px;
     text-align: center;
     align-content: center;
 }
@@ -32,6 +33,28 @@
 
 }
 
+.remember-me{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px auto 20px;
+}
+
+.remember-me input[type="checkbox"]{
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+
+.remember-me label{
+    font-size: 18px;
+    color: #000;
+}
+
+.forgot-password{
+    color: #6d4aff;
+    font-size: 18px;
+}
 
 .register-link{
     text-decoration: none;
@@ -46,16 +69,61 @@
 
 
 .login-image-img{
-    width: 600px;
-    height:  700px;
+    width: 85%;
+    height: auto;
     object-fit: cover;
     object-position: 15% 100%;
     border-radius: 25px;
 }
 
 .login-image{
-    clip-path: polygon(38% 0, 81% 0, 84% 100%, 15% 100%);
+    width: 900px;
+    height: auto;
     border-radius: 25px;
+    overflow: hidden;
 
 }
 
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.popup-box {
+  background-color: #fff;
+  padding: 20px 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  height: 140px;
+}
+
+.popup-box p {
+  margin-bottom: 15px;
+  color: #333;
+  font-weight: 500;
+}
+
+.popup-box button {
+  background-color: #6d4aff ;
+  border: none;
+  color: white;
+  padding: 8px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transform: ease-in-out 0.3s;
+}
+
+.popup-box button:hover {
+  background-color: #5a3bb0;
+  transition: background-color 0.3s ease;
+}

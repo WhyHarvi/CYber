@@ -5,6 +5,8 @@ import axios from 'axios';
 function Register() {
   const [step1Data, setStep1Data] = useState(null);
   const [password, setPassword] = useState('');
+  const [showPopup, setShowPopup] = useState(false);
+    const [popupMessage, setPopupMessage] = useState('');
 
   useEffect(() => {
     const data = localStorage.getItem('registerStep1');
@@ -21,10 +23,11 @@ function Register() {
     try {
       const fullData = { ...step1Data, password };
       await axios.post('http://localhost:5000/register', fullData);
-      alert('Registration successful!');
+      window.location.href = '/login'; // Redirect to login page after successful registration
       localStorage.removeItem('registerStep1');
     } catch (err) {
-      alert(err.response?.data?.msg || 'Registration failed');
+  setPopupMessage(err.response?.data?.msg || 'Something went wrong, please try again.');
+  setShowPopup(true);
     }
   };
 
@@ -32,6 +35,14 @@ function Register() {
 
   return (
     <div className="register-page">
+      {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <p>{popupMessage}</p>
+            <button onClick={() => setShowPopup(false)}>OK</button>
+          </div>
+        </div>
+      )}
       <div className="register-container">
         <h2>Create Account</h2>
         <p>Set your password and accept terms</p>
@@ -48,15 +59,15 @@ function Register() {
             required
           /><br />
           <input type="checkbox" id="terms" required />
-          <label htmlFor="terms">I agree to the terms and conditions</label><br /><br />
+          <label htmlFor="terms">I agree to the terms and conditions</label><br />
           <button type="submit" className="register-btn">Register</button>
           <p className="login-link">
             Already a member? <a href="/login">Login</a>
           </p>
         </form>
       </div>
-      <div className="register-image">
-        <img src="/assets/login.png" alt="Register" />
+      <div className="register-image1">
+        <img src="/assets/register.png" alt="Register" />
       </div>
     </div>
   );

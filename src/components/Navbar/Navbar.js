@@ -126,7 +126,7 @@ function Navbar({ products }) {
           <>
             <span className="hello-user">Hello, {username}</span>
             <Link to="/edit-profile">
-              <button className="logged-btn">Edit Profile</button>
+              <button className="edit-btn">Edit Profile</button>
             </Link>
             <button className="logged-btn" onClick={handleLogout}>Logout</button>
           </>

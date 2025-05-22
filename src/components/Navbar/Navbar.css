@@ -279,4 +279,30 @@
   }
 }
 
+.logged-btn{
+  background-color: #000000;
+  color: white;
+  border: none;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
 
+.edit-btn{
+  background-color: #6d4aff;
+  color: white;
+  border: none;
+  padding: 0.4rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.hello-user{
+  font-size: 1.2rem;
+  color: #000000;
+  font-weight: 600;
+}

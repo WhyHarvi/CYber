@@ -6,6 +6,9 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [popupMessage, setPopupMessage] = useState('');
+
 
   const handleLogin = async (e) => {
     e.preventDefault(); // prevent form refresh
@@ -19,14 +22,26 @@ function Login() {
       
       window.location.href = '/'; // redirect to home page
     } catch (err) {
-      alert(err.response?.data?.msg || 'Login failed');
-    }
+  setPopupMessage(err.response?.data?.msg || 'Incorrect email or password, please try again.');
+  setShowPopup(true);
+}
+
   };
 
   return (
+    
     <div className="login-page">
       <div className="login-container">
-        <h2>Login</h2><br />
+         {showPopup && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <p>{popupMessage}</p>
+            <button onClick={() => setShowPopup(false)}>OK</button>
+          </div>
+        </div>
+      )}
+
+        <h2>Login</h2>
         <p>
           Enter valid details below to<br />
           login to your account
@@ -34,9 +49,11 @@ function Login() {
         <form onSubmit={handleLogin}>
           <input type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required /><br />
           <input type="password" placeholder="Password" value={password} onChange={(e) => setPassword(e.target.value)} required /><br />
-          <input type="checkbox" id="remember-me" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)}/>
+          
+          <div className="remember-me"><input type="checkbox" id="remember-me" checked={rememberMe} onChange={(e) => setRememberMe(e.target.checked)}/>
           <label htmlFor="remember-me">Remember me</label> &nbsp;&nbsp;
-          <a href="#" className="forgot-password">Forgot Password?</a><br /><br />
+          <a href="#" className="forgot-password">Forgot Password?</a></div>
+
           <button type="submit" className="login-btn">Login</button>
           <p className="register-link">
             Not a member yet? <a href="/register">Register</a>

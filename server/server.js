@@ -1,3 +1,5 @@
+require('./database/initDb'); // ensures DB and table are created on first run
+
 const express = require('express');
 const cors = require('cors');
 const bcrypt = require('bcryptjs');
@@ -37,7 +39,6 @@ app.post('/register', async (req, res) => {
   db.query('SELECT * FROM users WHERE email = ?', [email], async (err, results) => {
     if (err) return res.status(500).send(err);
     if (results.length > 0) return res.status(400).json({ msg: 'User already exists' });
-    console.log(password);
     const passwordHash = await bcrypt.hash(password, 10);
 
     // Insert user
